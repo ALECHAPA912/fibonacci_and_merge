@@ -1,31 +1,22 @@
-def fibs(n)
-  puts 'This was printed with a loop'
-  
-  fibo_array = []
-  current_number = 0
-  last_number = 0
-  for i in 0..n-1
-    if i == 0 || i == 1
-      current_number = i
-      fibo_array << current_number
-      next
-    end
-    aux = current_number
-    current_number += last_number
-    last_number = aux
-    fibo_array << current_number
+def fibs(int)
+  sequence = []
+  last = 0
+  current = 1
+  i = 2
+  sequence << 0 if int > 0
+  sequence << 1 if int > 1
+  while int > i do
+    aux = current
+    current += last
+    sequence << current
+    last = aux
+    i+=1
   end
-  fibo_array
+  sequence
 end
 
-def fibs_rec(n)
-  puts "This was printed recursively"
-  return [] if n < 1
+def fibs_recursive(n,sequence=[])
   return [0] if n == 1
   return [0,1] if n == 2
-  
-  fibs_array = fibs_rec(n-1)
-  fibs_sequence = fibs_array[-1] + fibs_array[-2] 
-  fibs_array << fibs_sequence
-  fibs_array
+  fibs_recursive(n-1, sequence) +  fibs_recursive(n-2, sequence)
 end
