@@ -15,8 +15,11 @@ def fibs(int)
   sequence
 end
 
-def fibs_recursive(n,sequence=[])
-  return [0] if n == 1
+def fibs_recursive(n, seq = [])
+  return [0] if n < 2  
   return [0,1] if n == 2
-  fibs_recursive(n-1, sequence) +  fibs_recursive(n-2, sequence)
+  seq = fibs_recursive(n-1, seq)
+  seq << seq[-1] + seq[-2]
 end
+
+p fibs_recursive(8)
